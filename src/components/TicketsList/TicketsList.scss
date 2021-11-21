@@ -1,0 +1,27 @@
+@import "./../../styles/color";
+
+.table-contents {
+    overflow: auto;
+    height: 76%;
+    margin: 1rem 3rem;
+  }
+  .table-responsive  { border-collapse: collapse; width: 100%; }
+  .table-responsive thead tr th { position: sticky; top: 0; z-index: 1; }
+  .table td,
+  .table th {
+    padding: 12px 0;
+  }
+  .table td.fit,
+  .table th.fit {
+    white-space: nowrap;
+    text-align: center;
+    width: 5%;
+  }
+  .table .icon-btn {
+    border: transparent;
+    border-radius: 50%;
+    background-color: transparent;
+    &:hover {
+      color: $color_primary;
+    }
+  }

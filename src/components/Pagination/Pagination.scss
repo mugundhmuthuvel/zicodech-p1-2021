@@ -1,0 +1,31 @@
+@import "/src/styles/color";
+
+.pagination-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 2.9rem;
+    align-items: center;
+    height: auto;
+    p {
+        font-size: 12px;
+        height: auto;
+        margin: 0;
+        padding: 0;
+    }
+    button.btn-icon {
+        width: 40px;
+        height: 40px;
+        border: 0;
+        border-radius: 5px;
+        margin: 0 10px;
+        color: $color_primary;
+        background-color: $color_dark;
+        &:hover {
+            background-color: rgba($color: $color_dark, $alpha: 0.9);
+        }
+        &.inactive {
+            background-color: rgba($color: $color_dark, $alpha: 0.2);
+            color: $color_light;
+        }
+    }
+}

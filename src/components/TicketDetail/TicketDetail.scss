@@ -1,0 +1,20 @@
+@import "./../../styles/color";
+
+.detail-header {
+    margin-top: 0.5rem;
+    padding: 0 3rem;
+    button.icon-btn {
+        border: 0;
+        font-weight: 600;
+        padding: 1rem 0;
+        background-color: transparent;
+        margin-right: 1rem;
+        i {
+            margin-right: 10px;
+        }
+        &:hover {
+            text-decoration: underline;
+            color: $color_primary;
+        }
+    }
+}

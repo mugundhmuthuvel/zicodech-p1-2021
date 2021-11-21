@@ -1,0 +1,13 @@
+@import "./styles/color";
+
+@import "./App";
+@import "./components/Pageheader/Pageheader";
+@import "./components/Pagination/Pagination";
+
+html, body, #root {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}

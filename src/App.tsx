@@ -1,24 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Switch as Routes } from 'react-router-dom';
+import DashboardHome from './components/DashboardHome/DashboardHome';
+import Pageheader from './components/Pageheader/Pageheader';
+import Sidebar from './components/Sidebar/Sidebar';
+import TicketDetail from './components/TicketDetail/TicketDetail';
+import TicketsList from './components/TicketsList/TicketsList';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="base-container">
+      <Sidebar />
+      <div className="main-content">
+        <Pageheader />
+        <Routes>
+          <Route path="/tickets/:ticket_id" component={TicketDetail} />
+          <Route path="/tickets" component={TicketsList} />
+          <Route path="/" component={DashboardHome} />
+        </Routes>
+      </div>
     </div>
   );
 }

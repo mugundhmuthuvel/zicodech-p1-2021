@@ -1,12 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+//@ts-ignore
+import SnackbarProvider from 'react-simple-snackbar';
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <SnackbarProvider>
+        <App />
+      </SnackbarProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
