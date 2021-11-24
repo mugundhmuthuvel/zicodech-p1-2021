@@ -57,9 +57,53 @@ export interface Source {
   rel?: any;
 }
 
+export interface IUserResponse {
+  user: IUser;
+}
+
+export interface IUser {
+  id: number;
+  url: string;
+  name: string;
+  email: string;
+  created_at: string;
+  updated_at: string;
+  time_zone: string;
+  iana_time_zone: string;
+  phone?: any;
+  shared_phone_number?: any;
+  photo?: any;
+  locale_id: number;
+  locale: string;
+  organization_id: number;
+  role: string;
+  verified: boolean;
+  external_id?: any;
+  tags: any[];
+  alias?: any;
+  active: boolean;
+  shared: boolean;
+  shared_agent: boolean;
+  last_login_at: string;
+  two_factor_auth_enabled?: any;
+  signature?: any;
+  details?: any;
+  notes?: any;
+  role_type?: any;
+  custom_role_id?: any;
+  moderator: boolean;
+  ticket_restriction?: any;
+  only_private_comments: boolean;
+  restricted_agent: boolean;
+  suspended: boolean;
+  default_group_id: number;
+  report_csv: boolean;
+  user_fields: IEmptyObject;
+}
+
 export interface IEmptyObject {}
 
-const AuthorizationValue = "Basic ";
+const AuthorizationValue = "Basic bXVndW5kaG1AZ21haWwuY29tOm1aWlBpWDl5RzdIJkhRaA==";
 const BASEURL = "https://zendeskcodingchallenge2920.zendesk.com";
 const headerConfig = {
   Accept: "application/json",
@@ -71,7 +115,7 @@ export const getTickets = (page: number): Promise<AxiosResponse<ITicketsResponse
   return axios.get(URL, { headers: headerConfig });
 };
 
-export const getUserById = (userId: string): Promise<AxiosResponse<any>> => {
+export const getUserById = (userId: string): Promise<AxiosResponse<IUserResponse>> => {
   const URL = `${BASEURL}/api/v2/users/${userId}`;
   return axios.get(URL, { headers: headerConfig })
 };

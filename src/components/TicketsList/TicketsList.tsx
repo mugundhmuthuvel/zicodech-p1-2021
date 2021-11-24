@@ -32,7 +32,7 @@ class TicketsList extends React.Component<TicketsListProps, TicketsListState> {
     };
 
     private getTicketsFromAPI = async (page: number) => {
-        if (page-1 < 0 || page > this.state.pagination.totalPages) {
+        if (page - 1 < 0 || page > this.state.pagination.totalPages) {
             (this.props as any).enqueueSnackbar("We have reached the end of tickets.", { variant: "info" })
             return;
         }
@@ -43,7 +43,7 @@ class TicketsList extends React.Component<TicketsListProps, TicketsListState> {
                 pagination: {
                     currentPage: page,
                     totalPages: (ticketsResponse.count % 4 === 0 ? ticketsResponse.count / 4 : parseInt((ticketsResponse.count / 4).toString()) + 1)
-                } 
+                }
             });
         } catch (e) {
             (this.props as any).enqueueSnackbar("Oops! An error occurred. Please try again later.", { variant: "error" })
@@ -60,31 +60,31 @@ class TicketsList extends React.Component<TicketsListProps, TicketsListState> {
                     total={this.state.pagination.totalPages}
                 />
                 <div className="table-contents">
-                    <div className="table-responsive">
-                        <table className="table table-hover table-striped">
-                            <div className="thead">
-                                <div className="row">
-                                    <div className="col">Expand</div>
-                                    <div className="col">#ID</div>
-                                    <div className="col">Status</div>
-                                    <div className="col">Subject</div>
-                                    <div className="col">Requester</div>
-                                    <div className="col">Requester Updated</div>
-                                    <div className="col">Type</div>
-                                    <div className="col">Priority</div>
-                                </div>
+                    <div className="custom-table">
+                        <div className="thead">
+                            <div className="trow">
+                                <div className="tcol wsmall">Expand</div>
+                                <div className="tcol wsmall">#ID</div>
+                                <div className="tcol wsmall">Status</div>
+                                <div className="tcol w30">Subject</div>
+                                <div className="tcol w20">Requester</div>
+                                <div className="tcol w10">Requester Updated</div>
+                                <div className="tcol w10">Type</div>
+                                <div className="tcol w10">Priority</div>
                             </div>
+                        </div>
+                        <div className="tbody">
                             <div className="tbody">
                                 {this.state.tickets.map((tckt, idx) => (
-                                    <TableRow ticket={tckt} onClick={() => console.log(idx)} />
+                                    <TableRow key={idx} ticket={tckt} onClick={() => console.log(idx)} />
                                 ))}
                             </div>
-                        </table>
+                        </div>
                     </div>
                 </div>
                 <Pagination
                     onNextClicked={() => this.getTicketsFromAPI(this.state.pagination.currentPage - 1)}
-                    onPrevClicked={() => this.getTicketsFromAPI(this.state.pagination.currentPage+1)}
+                    onPrevClicked={() => this.getTicketsFromAPI(this.state.pagination.currentPage + 1)}
                     page={this.state.pagination.currentPage}
                     total={this.state.pagination.totalPages}
                 />

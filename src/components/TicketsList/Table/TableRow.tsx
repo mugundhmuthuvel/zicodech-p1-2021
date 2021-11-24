@@ -1,3 +1,4 @@
+import moment from 'moment';
 import * as React from 'react';
 import { ITicket } from '../../../axios/zdapis/zdapis.service';
 import User from './User';
@@ -9,29 +10,31 @@ interface TableRowProps {
 
 const TableRow: React.FunctionComponent<TableRowProps> = (props: TableRowProps) => {
     return (
-        <div className="row" onClick={props.onClick}>
-            <button className="icon-btn">
-                <i className="fas fa-expand-alt"></i>
-            </button>
-            <div className="col">
+        <div className="trow" onClick={props.onClick}>
+            <div className="tcol wsmall j-center">
+                <button className="expand-icon-btn">
+                    <i className="fas fa-expand-alt"></i>
+                </button>
+            </div>
+            <div className="tcol wsmall">
                 <p>#{props.ticket.id}</p>
             </div>
-            <div className="col">
+            <div className="tcol wsmall">
                 <p>{props.ticket.status}</p>
             </div>
-            <div className="col subject">
+            <div className="tcol w30">
                 <p>{props.ticket.subject}</p>
             </div>
-            <div className="col">
+            <div className="tcol w20">
                 <User user={props.ticket.requester_id.toString()} />
             </div>
-            <div className="col">
-                <p>{props.ticket.updated_at}</p>
+            <div className="tcol w10">
+                <p>{moment(props.ticket.updated_at).fromNow()}</p>
             </div>
-            <div className="col">
+            <div className="tcol w10">
                 <p>{props.ticket.type}</p>
             </div>
-            <div className="col">
+            <div className="tcol w10">
                 <p>{props.ticket.priority}</p>
             </div>
         </div>

@@ -1,27 +1,25 @@
 import * as React from 'react';
-import { getUserById } from '../../../axios/zdapis/zdapis.service';
+import { getUserById, IUser } from '../../../axios/zdapis/zdapis.service';
 
 interface UserProps {
     user: string;
 }
- 
+
 interface UserState {
-    user: any;
+    user: IUser;
     isLoading: boolean;
 }
- 
+
 class User extends React.Component<UserProps, UserState> {
-    public state = { user: {} as any, isLoading: true  };
+    public state = { user: {} as IUser, isLoading: true };
     public componentDidMount = () => {
         getUserById(this.props.user).then(resp => {
-            this.setState({ user: resp.data });
+            // this.setState({ user: resp.data.user, isLoading: false });
         })
     }
-    public render() { 
+    public render() {
         return this.state.isLoading ? (
-            <div className="loading-anime">
-                <i className="fas fa-spinner"></i>
-            </div>
+            <div className="small-loader"></div>
         ) : (
             <p>
                 {this.state.user.name}
@@ -29,5 +27,5 @@ class User extends React.Component<UserProps, UserState> {
         );
     }
 }
- 
+
 export default User;
