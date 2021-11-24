@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-//@ts-ignore
-import SnackbarProvider from 'react-simple-snackbar';
+import {SnackbarProvider} from 'notistack';
 import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
