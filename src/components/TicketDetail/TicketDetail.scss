@@ -18,3 +18,38 @@
         }
     }
 }
+.detail-body {
+    padding: 1rem 3rem;
+    border: 1px solid $color_light_gray;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    .main-panel {
+        flex: 1;
+        padding: 1rem 3rem;
+    }
+    .right-panel {
+        flex-basis: 20%;
+    }
+    .data-group {
+        margin-bottom: 2rem;
+        label {
+            text-transform: uppercase;
+            font-size: 11px;
+            font-weight: 600;
+            color: $color_dark;
+        }
+        p {
+            margin: 0;
+            padding: 0;
+            font-weight: 400;
+            &.status {
+                font-weight: 700;
+                color: #636E72;
+                &.open {
+                    color: #5cb85c;
+                }
+            }
+        }
+    }
+}
