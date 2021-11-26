@@ -1,5 +1,6 @@
 import moment from 'moment';
 import * as React from 'react';
+import { useHistory } from 'react-router-dom';
 import { ITicket } from '../../../axios/zdapis/zdapis.service';
 import User from '../User/User';
 
@@ -9,10 +10,11 @@ interface TableRowProps {
 }
 
 const TableRow: React.FunctionComponent<TableRowProps> = (props: TableRowProps) => {
+    const history = useHistory();
     return (
         <div className="trow" onClick={props.onClick} data-testid="tr-row">
             <div className="tcol wsmall j-center">
-                <button className="expand-icon-btn">
+                <button onClick={() => history.push(`/tickets/${props.ticket.id}`)} className="expand-icon-btn">
                     <i className="fas fa-expand-alt"></i>
                 </button>
             </div>
@@ -26,7 +28,7 @@ const TableRow: React.FunctionComponent<TableRowProps> = (props: TableRowProps) 
                 <p>{props.ticket.subject}</p>
             </div>
             <div className="tcol w20">
-                <User user={props.ticket.requester_id.toString()} />
+                <User user={props.ticket.requester_id+""} />
             </div>
             <div className="tcol w10">
                 <p>{moment(props.ticket.updated_at).fromNow()}</p>

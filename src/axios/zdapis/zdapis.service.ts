@@ -146,7 +146,13 @@ export interface ITicketDetail {
 
 export interface IEmptyObject {}
 
-const AuthorizationValue = "Basic ";
+export interface IATokenResponse {
+  access_token: string;
+  token_type: string;
+  scope: string;
+}
+
+const AuthorizationValue = `Bearer ${localStorage.getItem("accessToken")}`;
 const BASEURL = "https://zendeskcodingchallenge2920.zendesk.com";
 const headerConfig = {
   Accept: "application/json",
@@ -172,3 +178,11 @@ export const getGroupById = (groupId: string): Promise<AxiosResponse<any>> => {
   const URL = `${BASEURL}/api/v2/groups/${groupId}`;
   return axios.get(URL, { headers: headerConfig })
 };
+
+/** OAuth Clients */
+export const formAuthorizationLink = (): string => {
+  const REDIRECT_URI=process.env.REACT_APP_REDIRECT_URI;
+  const CLIENT_ID=process.env.REACT_APP_CLIENT_ID;
+  const URL = `${BASEURL}/oauth/authorizations/new?response_type=token&redirect_uri=${REDIRECT_URI}&client_id=${CLIENT_ID}&scope=read`;
+  return URL;
+}

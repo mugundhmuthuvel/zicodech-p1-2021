@@ -27,7 +27,8 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-app-env --env-file=.env start",
+    "starto": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:coverage": "CI=true npm test -- --env=jsdom --coverage",
@@ -55,16 +56,19 @@
     "coveragePathIgnorePatterns": [
       "src/index.ts",
       "src/routes.ts",
-      "src/reportWebVitals.ts"
+      "src/reportWebVitals.ts",
+      "authorization/*",
+      "axios/*"
     ]
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/moment": "^2.13.0",
     "@types/react-router": "^3.0.27",
-    "@types/react-router-dom": "^5.1.7",
+    "@types/react-router-dom": "^5.1.6",
     "@types/react-tooltip": "^4.2.4",
     "moment": "^2.29.1",
+    "react-app-env": "^1.2.3",
     "react-router-dom": "^5.2.0"
   }
 }

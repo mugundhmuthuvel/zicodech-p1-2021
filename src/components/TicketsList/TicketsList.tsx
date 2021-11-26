@@ -44,7 +44,7 @@ class TicketsList extends React.Component<TicketsListProps, TicketsListState> {
             if (ticketsResponse) {
                 console.log(ticketsResponse);
                 this.setState({
-                    tickets: ticketsResponse.data.tickets,
+                    tickets: [ ...ticketsResponse.data.tickets ],
                     pagination: {
                         currentPage: page,
                         totalPages: (ticketsResponse.data.count % 4 === 0 ? ticketsResponse.data.count / 4 : parseInt((ticketsResponse.data.count / 4).toString()) + 1)
@@ -63,8 +63,8 @@ class TicketsList extends React.Component<TicketsListProps, TicketsListState> {
         return (
             <React.Fragment>
                 <Pagination
-                    onNextClicked={() => this.setState({ isLoading: true }, () => this.getTicketsFromAPI(this.state.pagination.currentPage + 1))}
-                    onPrevClicked={() => this.setState({ isLoading: true }, () => this.getTicketsFromAPI(this.state.pagination.currentPage - 1))}
+                    onNextClicked={() => this.setState({ isLoading: true, tickets: [] }, () => this.getTicketsFromAPI(this.state.pagination.currentPage + 1))}
+                    onPrevClicked={() => this.setState({ isLoading: true, tickets: [] }, () => this.getTicketsFromAPI(this.state.pagination.currentPage - 1))}
                     page={this.state.pagination.currentPage}
                     total={this.state.pagination.totalPages}
                 />
@@ -92,8 +92,8 @@ class TicketsList extends React.Component<TicketsListProps, TicketsListState> {
                     </div>
                 </div>
                 <Pagination
-                    onNextClicked={() => this.getTicketsFromAPI(this.state.pagination.currentPage - 1)}
-                    onPrevClicked={() => this.getTicketsFromAPI(this.state.pagination.currentPage + 1)}
+                    onNextClicked={() => this.setState({ isLoading: true, tickets: [] }, () => this.getTicketsFromAPI(this.state.pagination.currentPage + 1))}
+                    onPrevClicked={() => this.setState({ isLoading: true, tickets: [] }, () => this.getTicketsFromAPI(this.state.pagination.currentPage - 1))}
                     page={this.state.pagination.currentPage}
                     total={this.state.pagination.totalPages}
                 />

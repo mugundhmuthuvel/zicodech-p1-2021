@@ -1,23 +1,21 @@
+import { SnackbarProvider } from 'notistack';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
-import {SnackbarProvider} from 'notistack';
-import { BrowserRouter } from 'react-router-dom';
+import OAuth from './authorization/OAuth';
+import './index.scss';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <SnackbarProvider>
-        <App />
+        <Switch>
+          <Route path="/oauthrdt" {...{ exact: true }} component={OAuth} />
+          <Route path="" component={App} />
+        </Switch>
       </SnackbarProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

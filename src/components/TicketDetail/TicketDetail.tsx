@@ -42,7 +42,7 @@ class TicketDetail extends React.Component<TicketDetailProps, TicketDetailState>
         ) : (
             <React.Fragment>
                 <div className="detail-header">
-                    <button className="icon-btn">
+                    <button onClick={() => (this.props as any).history.push("/tickets")} className="icon-btn">
                         <i className="fas fa-chevron-left"></i>
                         Back
                     </button>
