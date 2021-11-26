@@ -1,4 +1,4 @@
-const ticketResponse = {
+export const ticketResponse = {
     url: "https://zendeskcodingchallenge2920.zendesk.com/api/v2/tickets/1.json",
     id: 1,
     external_id: null,

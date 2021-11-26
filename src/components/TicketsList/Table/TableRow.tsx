@@ -10,7 +10,7 @@ interface TableRowProps {
 
 const TableRow: React.FunctionComponent<TableRowProps> = (props: TableRowProps) => {
     return (
-        <div className="trow" onClick={props.onClick}>
+        <div className="trow" onClick={props.onClick} data-testid="tr-row">
             <div className="tcol wsmall j-center">
                 <button className="expand-icon-btn">
                     <i className="fas fa-expand-alt"></i>
@@ -19,7 +19,7 @@ const TableRow: React.FunctionComponent<TableRowProps> = (props: TableRowProps) 
             <div className="tcol wsmall">
                 <p>#{props.ticket.id}</p>
             </div>
-            <div className="tcol wsmall">
+            <div className="tcol wsmall" data-testid="tr-status">
                 <p>{props.ticket.status}</p>
             </div>
             <div className="tcol w30">

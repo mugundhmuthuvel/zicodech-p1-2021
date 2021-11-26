@@ -35,10 +35,10 @@ it('Load component and check loading', async () => {
     expect(getByTestId("loader")).toHaveTextContent("");
 });
 
-it('Load component beyond loading', async () => {
+it('Load component beyond loading whether component renders the values from api', async () => {
     //@ts-ignore
     (getTicketById as jest.mock).mockReturnValue(ticketResponse);
-    const { getByTestId, findByText } = render(
+    const { findByText } = render(
         <Router history={history as any} >
          <TicketDetail {...{ location, match, history, route, routeParams: routeParams as any }}/>
         </Router>
