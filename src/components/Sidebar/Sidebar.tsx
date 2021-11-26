@@ -13,10 +13,10 @@ const Sidebar: React.FunctionComponent = () => {
                     <button data-tip="Paw-Fi" onClick={() => { enqueueSnackbar('Thanks for the Paw-Fi. I needed a logo. Used Paw icon instead :)') }} className="icon-btn logo">
                         <i className="icon-font fas fa-paw"></i>
                     </button>
-                    <Link to="/" className="icon-btn" data-tip="Home">
+                    <Link to="/" className="icon-btn" data-tip="Home" {...{"aria-label": "home-btn"}}>
                         <i className="icon-font fas fa-home"></i>
                     </Link>
-                    <Link to="/tickets" className="icon-btn" data-tip="Tickets">
+                    <Link to="/tickets" className="icon-btn" data-tip="Tickets" {...{"aria-label": "tickets-btn"}}>
                         <i className="icon-font fas fa-ticket-alt"></i>
                     </Link>
                 </div>

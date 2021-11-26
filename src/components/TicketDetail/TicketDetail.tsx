@@ -19,13 +19,13 @@ class TicketDetail extends React.Component<TicketDetailProps, TicketDetailState>
     };
 
     public componentDidMount = async () => {
-        const response = await getTicketById(this.state.ticket_id.toString());
+        const response = await getTicketById(this.state.ticket_id + "");
         this.setState({ ticket: response.data.ticket, isLoading: false });
     };
 
     public render() {
         return this.state.isLoading ? (
-            <div className="small-loader"></div>
+            <div data-testid="loader" className="small-loader"></div>
         ) : (
             <React.Fragment>
                 <div className="detail-header">
@@ -38,7 +38,7 @@ class TicketDetail extends React.Component<TicketDetailProps, TicketDetailState>
                 <div className="detail-body">
                     <div className="main-panel">
                         <div className="data-group">
-                            <label>Subject</label>
+                            <label data-testid="tckt-sub">Subject</label>
                             <p>{this.state.ticket.subject}</p>
                         </div>
                         <div className="data-group">

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Avatar from 'react-avatar';
 import { getUserById, IUser } from '../../../axios/zdapis/zdapis.service';
 
 interface UserProps {
@@ -12,18 +13,20 @@ interface UserState {
 
 class User extends React.Component<UserProps, UserState> {
     public state = { user: {} as IUser, isLoading: true };
-    public componentDidMount = () => {
-        getUserById(this.props.user).then(resp => {
-            // this.setState({ user: resp.data.user, isLoading: false });
-        })
+    public componentDidMount = async () => {
+        // const userResp = await getUserById(this.props.user);
+        // this.setState({ user: userResp.data.user, isLoading: false });
     }
     public render() {
         return this.state.isLoading ? (
             <div className="small-loader"></div>
         ) : (
-            <p>
-                {this.state.user.name}
-            </p>
+            <div className="d-flex align-items-center">
+                <Avatar name={this.state.user.name} round={true} size="30" />
+                <p style={{ marginLeft: "5px" }}>
+                    {this.state.user.name}
+                </p>
+            </div>
         );
     }
 }

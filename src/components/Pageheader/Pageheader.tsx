@@ -11,6 +11,7 @@ interface ICrumb {
 
 interface PageheaderState {
     crumbs: ICrumb[];
+    pageTitle: string;
 }
 
 class Pageheader extends React.Component<PageheaderProps, PageheaderState> {
@@ -18,6 +19,7 @@ class Pageheader extends React.Component<PageheaderProps, PageheaderState> {
         super(props);
         this.state = {
             crumbs: [],
+            pageTitle: "",
         }
     }
     public componentDidMount = () => {
@@ -28,19 +30,21 @@ class Pageheader extends React.Component<PageheaderProps, PageheaderState> {
     };
 
     private formBreadcrumb = () => {
-        if (this.props.location.pathname === "/") this.setState({ crumbs: [{ name: "Dashboard", path: "/" }] });
+        if (this.props.location.pathname === "/") this.setState({ crumbs: [{ name: "Dashboard", path: "/" }], pageTitle: "Dashboard" });
         else if (this.props.location.pathname === "/tickets") this.setState({
             crumbs: [
                 { name: "Dashboard", path: "/" },
                 { name: "Tickets List", path: "/tickets" }
-            ] 
+            ],
+            pageTitle: "Tickets"
             });
         else if (this.props.location.pathname.includes("/tickets/")) this.setState({
             crumbs: [
                 { name: "Dashboard", path: "/" },
                 { name: "Tickets List", path: "/tickets" },
                 { name: "Ticket Detail", path: this.props.location.pathname }
-            ]
+            ],
+            pageTitle: "Ticket Detail"
             });
     };
 
@@ -48,7 +52,7 @@ class Pageheader extends React.Component<PageheaderProps, PageheaderState> {
         return (
             <React.Fragment>
                 <header>
-                    <h1 className="page-title">Dashboard</h1>
+                    <h1 className="page-title">{this.state.pageTitle}</h1>
                     <div className="breadcrumbs">
                         {this.state.crumbs.map((bcitem, ind) => (
                             <Link key={ind} to={bcitem.path} className={`bc-item ${ind+1 === this.state.crumbs.length ? "active" : ""}`}>{bcitem.name}</Link>

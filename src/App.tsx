@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch as Routes } from 'react-router-dom';
+import { Redirect, Route, Switch as Routes } from 'react-router-dom';
 import DashboardHome from './components/DashboardHome/DashboardHome';
 import Pageheader from './components/Pageheader/Pageheader';
 import Sidebar from './components/Sidebar/Sidebar';
@@ -15,7 +15,10 @@ function App() {
         <Routes>
           <Route path="/tickets/:ticket_id" component={TicketDetail} />
           <Route path="/tickets" component={TicketsList} />
-          <Route path="/" component={DashboardHome} />
+          <Route path="/" {...{ exact: true }} component={DashboardHome} />
+          <Route path="">
+            <Redirect from="" to="/" />
+          </Route>
         </Routes>
       </div>
     </div>
