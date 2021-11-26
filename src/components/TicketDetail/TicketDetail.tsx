@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { getTicketById, ITicketDetail } from '../../axios/zdapis/zdapis.service';
-import User from '../TicketsList/Table/User';
+import User from '../TicketsList/User/User';
 import "./TicketDetail.scss";
 interface TicketDetailProps extends RouteComponentProps<any, null> { }
 

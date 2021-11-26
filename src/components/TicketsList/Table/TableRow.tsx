@@ -1,7 +1,7 @@
 import moment from 'moment';
 import * as React from 'react';
 import { ITicket } from '../../../axios/zdapis/zdapis.service';
-import User from './User';
+import User from '../User/User';
 
 interface TableRowProps {
     onClick: () => void;

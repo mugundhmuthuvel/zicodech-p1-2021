@@ -8,7 +8,7 @@ import TicketsList from './components/TicketsList/TicketsList';
 
 function App() {
   return (
-    <div className="base-container">
+    <div className="base-container" data-testid="base-cntr">
       <Sidebar />
       <div className="main-content">
         <Pageheader />

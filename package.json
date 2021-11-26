@@ -50,6 +50,13 @@
       "last 1 safari version"
     ]
   },
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "src/index.ts",
+      "src/routes.ts",
+      "src/reportWebVitals.ts"
+    ]
+  },
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/moment": "^2.13.0",

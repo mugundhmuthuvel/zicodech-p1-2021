@@ -48,10 +48,83 @@ export const ticketResponse = {
     allow_attachments: true
 };
 
-const dataResp = {
+const userResp = {
+    user: {
+        id: 1903993788153,
+        url: "https://zendeskcodingchallenge2920.zendesk.com/api/v2/users/1903993788153.json",
+        name: "The Customer",
+        email: "customer@example.com",
+        created_at: "2021-11-21T22:59:05Z",
+        updated_at: "2021-11-21T22:59:08Z",
+        time_zone: "Europe/Dublin",
+        iana_time_zone: "Europe/Dublin",
+        phone: null,
+        shared_phone_number: null,
+        photo: {
+            url: "https://zendeskcodingchallenge2920.zendesk.com/api/v2/attachments/360686499237.json",
+            id: 360686499237,
+            file_name: "profile_image_1903993788153_11717291.png",
+            content_url: "https://zendeskcodingchallenge2920.zendesk.com/system/photos/360686499237/profile_image_1903993788153_11717291.png",
+            mapped_content_url: "https://zendeskcodingchallenge2920.zendesk.com/system/photos/360686499237/profile_image_1903993788153_11717291.png",
+            content_type: "image/png",
+            size: 10254,
+            width: 80,
+            height: 80,
+            inline: false,
+            deleted: false,
+            thumbnails: [
+                {
+                    url: "https://zendeskcodingchallenge2920.zendesk.com/api/v2/attachments/360686499257.json",
+                    id: 360686499257,
+                    file_name: "profile_image_1903993788153_11717291_thumb.png",
+                    content_url: "https://zendeskcodingchallenge2920.zendesk.com/system/photos/360686499237/profile_image_1903993788153_11717291_thumb.png",
+                    mapped_content_url: "https://zendeskcodingchallenge2920.zendesk.com/system/photos/360686499237/profile_image_1903993788153_11717291_thumb.png",
+                    content_type: "image/png",
+                    size: 2402,
+                    width: 32,
+                    height: 32,
+                    inline: false,
+                    deleted: false
+                }
+            ]
+        },
+        locale_id: 1,
+        locale: "en-US",
+        organization_id: null,
+        role: "end-user",
+        verified: false,
+        external_id: null,
+        tags: [],
+        alias: null,
+        active: true,
+        shared: false,
+        shared_agent: false,
+        last_login_at: null,
+        two_factor_auth_enabled: false,
+        signature: null,
+        details: null,
+        notes: null,
+        role_type: null,
+        custom_role_id: null,
+        moderator: false,
+        ticket_restriction: "requested",
+        only_private_comments: false,
+        restricted_agent: true,
+        suspended: false,
+        default_group_id: null,
+        report_csv: false,
+        user_fields: {}
+    }
+}
+
+export const dataResp = {
     data: {
         ticket: ticketResponse,
     }
+}
+
+export const userDataResp = {
+    data: userResp,
 }
 
 export default dataResp;
