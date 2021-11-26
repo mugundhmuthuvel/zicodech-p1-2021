@@ -123,6 +123,12 @@ export const dataResp = {
     }
 }
 
+export const multipleTicketDataResp = {
+    data: {
+        tickets: [ticketResponse],
+    }
+}
+
 export const userDataResp = {
     data: userResp,
 }

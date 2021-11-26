@@ -5,6 +5,7 @@ import { withSnackbar } from 'notistack';
 import "./TicketsList.scss";
 import { RouteComponentProps, withRouter } from 'react-router';
 import TableRow from './Table/TableRow';
+import Loader from 'react-loader-spinner';
 
 interface TicketsListProps extends RouteComponentProps<null, null> {
 
@@ -16,6 +17,7 @@ interface TicketsListState {
         currentPage: number;
         totalPages: number;
     },
+    isLoading: boolean;
 }
 
 class TicketsList extends React.Component<TicketsListProps, TicketsListState> {
@@ -24,7 +26,8 @@ class TicketsList extends React.Component<TicketsListProps, TicketsListState> {
         pagination: {
             currentPage: 0,
             totalPages: 99,
-        }
+        },
+        isLoading: true
     };
 
     public componentDidMount = () => {
@@ -37,16 +40,22 @@ class TicketsList extends React.Component<TicketsListProps, TicketsListState> {
             return;
         }
         try {
-            const ticketsResponse = await (await getTickets(page)).data;
-            this.setState({
-                tickets: ticketsResponse.tickets,
-                pagination: {
-                    currentPage: page,
-                    totalPages: (ticketsResponse.count % 4 === 0 ? ticketsResponse.count / 4 : parseInt((ticketsResponse.count / 4).toString()) + 1)
-                }
-            });
+            const ticketsResponse = await getTickets(page);
+            if (ticketsResponse) {
+                console.log(ticketsResponse);
+                this.setState({
+                    tickets: ticketsResponse.data.tickets,
+                    pagination: {
+                        currentPage: page,
+                        totalPages: (ticketsResponse.data.count % 4 === 0 ? ticketsResponse.data.count / 4 : parseInt((ticketsResponse.data.count / 4).toString()) + 1)
+                    },
+                    isLoading: false,
+                });
+            }
         } catch (e) {
-            (this.props as any).enqueueSnackbar("Oops! An error occurred. Please try again later.", { variant: "error" })
+            this.setState({ isLoading: false }, () => {
+                (this.props as any).enqueueSnackbar("Oops! An error occurred. Please try again later.", { variant: "error" });
+            });
         }
     }
 
@@ -54,8 +63,8 @@ class TicketsList extends React.Component<TicketsListProps, TicketsListState> {
         return (
             <React.Fragment>
                 <Pagination
-                    onNextClicked={() => this.getTicketsFromAPI(this.state.pagination.currentPage + 1)}
-                    onPrevClicked={() => this.getTicketsFromAPI(this.state.pagination.currentPage - 1)}
+                    onNextClicked={() => this.setState({ isLoading: true }, () => this.getTicketsFromAPI(this.state.pagination.currentPage + 1))}
+                    onPrevClicked={() => this.setState({ isLoading: true }, () => this.getTicketsFromAPI(this.state.pagination.currentPage - 1))}
                     page={this.state.pagination.currentPage}
                     total={this.state.pagination.totalPages}
                 />
@@ -73,13 +82,13 @@ class TicketsList extends React.Component<TicketsListProps, TicketsListState> {
                                 <div className="tcol w10">Priority</div>
                             </div>
                         </div>
-                        <div className="tbody">
+                        {<div className="tbody" data-testid="tkt-tbody">
                             <div className="tbody">
                                 {this.state.tickets.map((tckt, idx) => (
                                     <TableRow key={idx} ticket={tckt} onClick={() => console.log(idx)} />
                                 ))}
                             </div>
-                        </div>
+                        </div>}
                     </div>
                 </div>
                 <Pagination
@@ -88,6 +97,9 @@ class TicketsList extends React.Component<TicketsListProps, TicketsListState> {
                     page={this.state.pagination.currentPage}
                     total={this.state.pagination.totalPages}
                 />
+                {this.state.isLoading && (<div className="loader-bg" data-testid="loader">
+                    <Loader type="Puff" color="#00ADB5" />
+                </div>)}
             </React.Fragment>
         );
     }

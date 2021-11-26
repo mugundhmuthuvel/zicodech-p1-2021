@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Loader from 'react-loader-spinner';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { getTicketById, ITicketDetail } from '../../axios/zdapis/zdapis.service';
 import User from '../TicketsList/User/User';
@@ -19,9 +20,13 @@ class TicketDetail extends React.Component<TicketDetailProps, TicketDetailState>
     };
 
     public componentDidMount = async () => {
-        const response = await getTicketById(this.state.ticket_id + "");
-        if (response) {
-            this.setState({ ticket: response.data.ticket, isLoading: false });
+        try {
+            const response = await getTicketById(this.state.ticket_id + "");
+            if (response) {
+                this.setState({ ticket: response.data.ticket, isLoading: false });
+            }
+        } catch (er) {
+            console.error(er);
         }
     };
 
@@ -73,6 +78,9 @@ class TicketDetail extends React.Component<TicketDetailProps, TicketDetailState>
                         </div>
                     </div>
                 </div>
+                {this.state.isLoading && (<div className="loader-bg">
+                    <Loader type="Puff" color="#00ADB5" />
+                </div>)}
             </React.Fragment>
         );
     }
