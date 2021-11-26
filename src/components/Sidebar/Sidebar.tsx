@@ -10,7 +10,7 @@ const Sidebar: React.FunctionComponent = () => {
         <>
             <div className="sidebar">
                 <div>
-                    <button data-tip="Paw-Fi" onClick={() => { enqueueSnackbar('Thanks for the Paw-Fi. I needed a logo. Used Paw icon instead :)') }} className="icon-btn logo">
+                    <button data-testid="sb-pawfi" data-tip="Paw-Fi" onClick={() => { enqueueSnackbar('Thanks for the Paw-Fi. I needed a logo. Used Paw icon instead :)') }} className="icon-btn logo">
                         <i className="icon-font fas fa-paw"></i>
                     </button>
                     <Link to="/" className="icon-btn" data-tip="Home" {...{"aria-label": "home-btn"}}>
@@ -20,7 +20,7 @@ const Sidebar: React.FunctionComponent = () => {
                         <i className="icon-font fas fa-ticket-alt"></i>
                     </Link>
                 </div>
-                <button onClick={() => { enqueueSnackbar('Built in love with React. A micro application by Mugundh Muthuvel') }} className="icon-btn">
+                <button data-testid="sb-info" onClick={() => { enqueueSnackbar('Built in love with React. A micro application by Mugundh Muthuvel') }} className="icon-btn">
                     <i className="icon-font fas fa-info"></i>
                 </button>
             </div>
