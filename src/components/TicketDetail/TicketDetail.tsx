@@ -20,7 +20,15 @@ class TicketDetail extends React.Component<TicketDetailProps, TicketDetailState>
 
     public componentDidMount = async () => {
         const response = await getTicketById(this.state.ticket_id + "");
-        this.setState({ ticket: response.data.ticket, isLoading: false });
+        if (response) {
+            this.setState({ ticket: response.data.ticket, isLoading: false });
+        }
+    };
+
+    private getTicketStatus = (status: string) => {
+        if (status) {
+            return status.charAt(0).toUpperCase() + status.slice(1)
+        }
     };
 
     public render() {
@@ -49,19 +57,19 @@ class TicketDetail extends React.Component<TicketDetailProps, TicketDetailState>
                     <div className="right-panel">
                         <div className="data-group">
                             <label>Requester</label>
-                            <User user={this.state.ticket.requester_id.toString()} />
+                            <User user={this.state.ticket.requester_id + ""} />
                         </div>
                         <div className="data-group">
                             <label>Assignee</label>
-                            <User user={this.state.ticket.assignee_id.toString()} />
+                            <User user={this.state.ticket.assignee_id + ""} />
                         </div>
                         <div className="data-group">
                             <label>Tags</label>
-                            <p>{this.state.ticket.tags.join(", ")}</p>
+                            <p>{this.state.ticket.tags ? this.state.ticket.tags.join(", ") : ""}</p>
                         </div>
                         <div className="data-group">
                             <label>Status</label>
-                            <p className={`status ${this.state.ticket.status}`}>{this.state.ticket.status.charAt(0).toUpperCase() + this.state.ticket.status.slice(1)}</p>
+                            <p className={`status ${this.state.ticket.status}`}>{this.getTicketStatus(this.state.ticket.status)}</p>
                         </div>
                     </div>
                 </div>

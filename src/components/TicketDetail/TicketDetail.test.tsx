@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { cleanup, render, wait } from '@testing-library/react';
+import { cleanup, render, wait, waitFor, waitForElement } from '@testing-library/react';
 import { createLocation, createMemoryHistory } from 'history';
 import React from 'react';
 import { Router } from 'react-router-dom';
@@ -35,19 +35,14 @@ it('Load component and check loading', async () => {
     expect(getByTestId("loader")).toHaveTextContent("");
 });
 
-xit('Load component beyond loading', async () => {
+it('Load component beyond loading', async () => {
     //@ts-ignore
-    getTicketById.mockResolvedValue(ticketResponse);
-    const { getByTestId } = render(
+    (getTicketById as jest.mock).mockReturnValue(ticketResponse);
+    const { getByTestId, findByText } = render(
         <Router history={history as any} >
          <TicketDetail {...{ location, match, history, route, routeParams: routeParams as any }}/>
         </Router>
     )
-    /* Here I am trying to load the mocked api and compare the text rendered with a string I have. But for some reason 
-     * I keep getting this error - Cannot read property 'data' of undefined. Hence unable to proceed.
-     */
-    // const resolvedContent = waitForElement(() => getByTestId("tckt-sub"));
-    // await wait(() => expect(getByTestId("tckt-det")).toBeInTheDocument());
-    // expect(resolvedContent).toHaveTextContent("Sample ticket: Meet the ticket");
-    // expect().toHaveBeenCalledTimes(1);
+    const elementLookingFor = await findByText(/Sample ticket: Meet the ticket/);
+    expect(elementLookingFor).toBeInTheDocument();
 });
