@@ -1,50 +1,62 @@
-# Getting Started with Create React App
+# Zendesk Coding Challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Zendesk is a customer service tool that allows the creation and management of support tickets.
+Your company needs you to build a Ticket Viewer that will:
+- Connect to the Zendesk API
+- Request all the tickets for your account
+- Display them in a list
+- Display individual ticket details
+- Page through tickets when more than 25 are returned
 
-## Available Scripts
+## Installation & Usage Instructions
 
-In the project directory, you can run:
+To run the application, your machine would need to have all the packages
+Pre-requisites:
+- [Node.js](https://nodejs.org/)
+- Terminal ([Git Bash](https://git-scm.com/downloads)/Powershell/cmd/Linux terminal)
+- [npm](https://www.npmjs.com/) 
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Dillinger requires  v10+ to run.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Check for node and npm, move to the root directory, install the dependencies and devDependencies and start the server.
 
-### `npm test`
+```sh
+node -v
+npm -v
+cd zicodech-p1-2021
+npm install
+npm start
+```
+To see the test cases use either of the following commands..
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```sh
+npm test #Runs test cases in CLI
+CI=true npm test -- --env=jsdom --coverage #GUI Version of test cases
+```
 
-### `npm run build`
+## Usage Information:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- The application uses the *OAuth Client Token* which is stored in the .env file in the root directory
+- I have used ```/tickets``` API to fetch the tickets and display it in a custom table developed using flex box
+- In the table I have used micro component - User to load the user data from the ```user/:id``` API and display his name
+- I have used SCSS to style as it is easy to create variables and import it wherever needed
+- Also I have used FontAwesome & Bootstrap for icons and some well-built CSS instead of writing everything from scratch given a week time
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Packages used
 
-### `npm run eject`
+| Plugin | Usage | Version |
+| ------ | ------ | ------ |
+| axios | Make request from the Browser to Zendesk API Endpoints | 0.24.0 |
+| node-sass | SCSS compiler | 6.0.1 |
+| notistack | Display messages using a Snackbar | 2.0.3 |
+| react | Application Development Framework | 17.0.2 |
+| react-avatar | Used while showing User name first letters | 4.0.0 |
+| react-loader-spinner | Quick loading spinner while loading pages | 4.0.0 |
+| react-tooltip | Show tooltips in sidebar/menubar while hovering the icons | 4.2.21 |
+| typescript | Used for a type strict development | 4.5.2 |
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-### `CI=true npm test -- --env=jsdom --coverage`
-
-Show the test coverage written for the components
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Developed by Mugundh Muthuvel**

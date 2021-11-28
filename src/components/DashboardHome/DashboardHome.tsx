@@ -30,6 +30,7 @@ const DashboardHome: React.FunctionComponent = () => {
                     <img className="tech-logos" alt="html" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/640px-HTML5_logo_and_wordmark.svg.png" />
                     <img className="tech-logos" alt="scss" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Sass_Logo_Color.svg/1280px-Sass_Logo_Color.svg.png" />
                     <img className="tech-logos" alt="tsx" src="https://image.pngaaa.com/113/4609113-middle.png" />
+                    <img className="tech-logos" alt="tsx" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Git-logo.svg/1280px-Git-logo.svg.png" />
                 </div>
             </div>
         </div>
