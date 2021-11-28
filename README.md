@@ -12,6 +12,7 @@ Your company needs you to build a Ticket Viewer that will:
 
 To run the application, your machine would need to have all the packages
 Pre-requisites:
+- Desktop / PC (Application is currently not built with a responsive design)
 - [Node.js](https://nodejs.org/)
 - Terminal ([Git Bash](https://git-scm.com/downloads)/Powershell/cmd/Linux terminal)
 - [npm](https://www.npmjs.com/) 
@@ -43,7 +44,9 @@ CI=true npm test -- --env=jsdom --coverage #GUI Version of test cases
 - In the table I have used micro component - User to load the user data from the ```user/:id``` API and display his name
 - I have used SCSS to style as it is easy to create variables and import it wherever needed
 - Also I have used FontAwesome & Bootstrap for icons and some well-built CSS instead of writing everything from scratch given a week time
-
+- First page is the dashboard, and its just a simple landing page.
+- Second is the Tickets page, where ```/tickets``` API endpoint is hit to fetch all the requests from the account
+- Third, In every ticket row displayed in the table, an expand icon will be displayed, which on clicked will take you to the ticket detail page. where every ticket can be viewed in detail. And to return to the table, either the tickets icon in the side bar or the Back text link in the ticket detail page can be clicked.
 
 ## Packages used
 
@@ -58,5 +61,11 @@ CI=true npm test -- --env=jsdom --coverage #GUI Version of test cases
 | react-tooltip | Show tooltips in sidebar/menubar while hovering the icons | 4.2.21 |
 | typescript | Used for a type strict development | 4.5.2 |
 
+## Regrets
+I could have made the application a little better by:
+- Making the app responsive, so that it can be viewed across all the devices - Mobile Tablet Desktop.
+- Made use of Redux for better sharing of data between components such as using the redux loaded data in the User component to reduce the number of calls being made to the server.
+
+These are excuses, I understand. With the given time I was able to do very less justice to the application as I had my assignments and semester right around the corner. Sorry for the excuses.
 
 **Developed by Mugundh Muthuvel**
