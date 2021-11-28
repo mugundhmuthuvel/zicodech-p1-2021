@@ -14,9 +14,18 @@ interface UserState {
 class User extends React.Component<UserProps, UserState> {
     public state = { user: {} as IUser, isLoading: true };
     public componentDidMount = async () => {
-        const userResp = await getUserById(this.props.user);
-        if (userResp) {
-            this.setState({ user: userResp.data.user, isLoading: false });
+        if (this.props.user) {
+            try {
+                const userResp = await getUserById(this.props.user);
+                if (userResp) {
+                    this.setState({ user: userResp.data.user, isLoading: false });
+                }
+            } catch (e) {
+                this.setState({ user: { name: "-failed-" } as IUser, isLoading: false });
+                console.error("Failed to fetch user - ", this.props.user, e);
+            }
+        } else {
+            this.setState({ user: { name: "Undefined" } as IUser, isLoading: false });
         }
     }
     public render() {

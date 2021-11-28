@@ -1,3 +1,4 @@
+import moment from 'moment';
 import * as React from 'react';
 import Loader from 'react-loader-spinner';
 import { RouteComponentProps, withRouter } from 'react-router';
@@ -30,10 +31,11 @@ class TicketDetail extends React.Component<TicketDetailProps, TicketDetailState>
         }
     };
 
-    private getTicketStatus = (status: string) => {
-        if (status) {
-            return status.charAt(0).toUpperCase() + status.slice(1)
+    private firstCharCapitalize = (key: string) => {
+        if (key) {
+            return key.charAt(0).toUpperCase() + key.slice(1)
         }
+        return "--";
     };
 
     public render() {
@@ -53,10 +55,11 @@ class TicketDetail extends React.Component<TicketDetailProps, TicketDetailState>
                         <div className="data-group">
                             <label data-testid="tckt-sub">Subject</label>
                             <p>{this.state.ticket.subject}</p>
+                            <p><small><b>CREATED AT:</b> {moment(this.state.ticket.created_at).format("DD MMM YYYY hh:mm Z")}</small></p>
                         </div>
                         <div className="data-group">
                             <label>Description</label>
-                            <p>{this.state.ticket.description}</p>
+                            <p>{this.state.ticket.description||"--"}</p>
                         </div>
                     </div>
                     <div className="right-panel">
@@ -65,16 +68,24 @@ class TicketDetail extends React.Component<TicketDetailProps, TicketDetailState>
                             <User user={this.state.ticket.requester_id + ""} />
                         </div>
                         <div className="data-group">
+                            <label>Priority</label>
+                            <p>{this.firstCharCapitalize(this.state.ticket.priority)}</p>
+                        </div>
+                        <div className="data-group">
+                            <label>Type</label>
+                            <p>{this.firstCharCapitalize(this.state.ticket.type)}</p>
+                        </div>
+                        <div className="data-group">
                             <label>Assignee</label>
                             <User user={this.state.ticket.assignee_id + ""} />
                         </div>
                         <div className="data-group">
                             <label>Tags</label>
-                            <p>{this.state.ticket.tags ? this.state.ticket.tags.join(", ") : ""}</p>
+                            <p>{this.state.ticket.tags && this.state.ticket.tags.length > 0 ? this.state.ticket.tags.join(", ") : "--"}</p>
                         </div>
                         <div className="data-group">
                             <label>Status</label>
-                            <p className={`status ${this.state.ticket.status}`}>{this.getTicketStatus(this.state.ticket.status)}</p>
+                            <p className={`status ${this.state.ticket.status}`}>{this.firstCharCapitalize(this.state.ticket.status)||"--"}</p>
                         </div>
                     </div>
                 </div>

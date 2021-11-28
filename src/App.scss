@@ -94,3 +94,12 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+.w-fit {
+  width: max-content;
+}
+.tech-logos {
+  margin-right: 8px;
+  margin-bottom: 20px;
+  height: 35px;
+  width: auto;
+}

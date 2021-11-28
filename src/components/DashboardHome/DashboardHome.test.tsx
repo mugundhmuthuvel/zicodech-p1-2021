@@ -12,5 +12,5 @@ it('Check if dashboard is rendered properly', () => {
     <DashboardHome />
   )
   /* Expecting 2 Dashboards - Title & Breadcrumb */
-  expect(container.getAllByText(/MagicHat/i).length).toEqual(1);
+  expect(container.getAllByText(/Paw/i).length).toEqual(1);
 });
