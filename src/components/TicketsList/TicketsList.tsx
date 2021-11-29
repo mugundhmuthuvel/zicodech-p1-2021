@@ -62,12 +62,12 @@ class TicketsList extends React.Component<TicketsListProps, TicketsListState> {
     public render() {
         return (
             <React.Fragment>
-                <Pagination
+                {this.state.pagination.totalPages > 1 && <Pagination
                     onNextClicked={() => this.setState({ isLoading: true, tickets: [] }, () => this.getTicketsFromAPI(this.state.pagination.currentPage + 1))}
                     onPrevClicked={() => this.setState({ isLoading: true, tickets: [] }, () => this.getTicketsFromAPI(this.state.pagination.currentPage - 1))}
                     page={this.state.pagination.currentPage}
                     total={this.state.pagination.totalPages}
-                />
+                />}
                 <div className="table-contents">
                     <div className="custom-table">
                         <div className="thead">
@@ -91,12 +91,12 @@ class TicketsList extends React.Component<TicketsListProps, TicketsListState> {
                         </div>}
                     </div>
                 </div>
-                <Pagination
+                {this.state.pagination.totalPages > 1 && <Pagination
                     onNextClicked={() => this.setState({ isLoading: true, tickets: [] }, () => this.getTicketsFromAPI(this.state.pagination.currentPage + 1))}
                     onPrevClicked={() => this.setState({ isLoading: true, tickets: [] }, () => this.getTicketsFromAPI(this.state.pagination.currentPage - 1))}
                     page={this.state.pagination.currentPage}
                     total={this.state.pagination.totalPages}
-                />
+                />}
                 {this.state.isLoading && (<div className="loader-bg" data-testid="loader">
                     <Loader type="Puff" color="#00ADB5" />
                 </div>)}

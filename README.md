@@ -61,11 +61,15 @@ CI=true npm test -- --env=jsdom --coverage #GUI Version of test cases
 | react-tooltip | Show tooltips in sidebar/menubar while hovering the icons | 4.2.21 |
 | typescript | Used for a type strict development | 4.5.2 |
 
-## Regrets
+## What I could have done
 I could have made the application a little better by:
 - Making the app responsive, so that it can be viewed across all the devices - Mobile Tablet Desktop.
 - Made use of Redux for better sharing of data between components such as using the redux loaded data in the User component to reduce the number of calls being made to the server.
+- Authentication. I have used a very basic authentication mechanism and it just checks if there is an access token available, if so I lead them to the tickets list page. Instead, I should have checked whether the authentication token is valid and if not, I should redirect them to the login page again
+- Pagination. I liked the way my Gmail pagination works. So I have used the same feature here instead of implementing the page numbers listed as button and few hidden pages and then last page.
+- Colors. As I like simple flat and dark color I chose the dark grey and green. Coincidentally or under the influence of the Zendesk logo, it matched the colors in the dashboard some what.
+- Use of any. Using any is actually a bad way of developing using typescript. But unfortunately I was spending more time in doing that. Hence I decided to go with it in a few places.
 
-These are excuses, I understand. With the given time I was able to do very less justice to the application as I had my assignments and semester right around the corner. Sorry for the excuses.
+These are excuses, I understand. With the given time I was able to do very less justice to the application as I had my assignments and semester right around the corner. My sincere apologies for the excuses.
 
 **Developed by Mugundh Muthuvel**
